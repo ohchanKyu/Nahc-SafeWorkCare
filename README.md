@@ -74,4 +74,82 @@ Safe WorkCare는 산업재해 예방을 위한 통합 정보 제공 플랫폼입
          <img src="https://github.com/user-attachments/assets/80850811-8fa5-47c0-bfd0-7289d2f4fe18"/>
        </p>
 
+- <p>$\bf{\large{\color{#6580DD} 산업재해 \ 사례 \ 분석 \ 기능 }}$</p>
+
+   #### 기능
+     * 실제 산업재해 사례 데이터 검색 및 사고 유형 필터링
+     * 사고 발생 원인과 예방조치 함께 제공
+   #### 핵심 기술
+     * 산업재해 사례 DB 구축 및 관리
+     * 검색 엔진 및 텍스트 필터링 기능
+     * 사례 데이터 태깅 및 분류 알고리즘
+   #### 사용자 UI
+     * 산업재해 사례 분석 UI ( 초기 화면 )
+       <p align="left">
+         <img src="https://github.com/user-attachments/assets/cbaf7cd8-607c-4a7a-b197-aa66c7719b6c"/>
+       </p>
+     * 키워드 검색 및 필터링 검색 UI
+       <p align="left">
+         <img src="https://github.com/user-attachments/assets/2ff0787c-f017-4cad-b303-e45ddef837e7"/>
+       </p>
+
+- <p>$\bf{\large{\color{#6580DD} 맞춤형 \ 위험요인 \ 진단 \ 서비스 }}$</p>
+
+   #### 기능
+     * 사용자 입력(업종, 작업환경 등)에 따라 유사 조건의 고위험 요소 분석
+     * 사전 예방 중심의 위험 인사이트 제공
+   #### 핵심 기술
+     * TF-IDF 기반 위험요소 자동 추출
+     * 코사인 유사도 기반 유사사례 검색
+     * 단어 전처리 및 불용어 제거
+     * 위험 상황에 대한 LLM 기반 요약 및 클러스터링, 위험도 설명 문장 자동 생성
+   #### 사용자 UI
+     * 맞춤형 위험요인 진단 UI ( 초기 화면 및 결과 화면 )
+       <p align="left">
+         <img src="https://github.com/user-attachments/assets/37ae0d83-6b4e-4fab-85b5-db2abc13003a"/>
+       </p>
+
+- <p>$\bf{\large{\color{#6580DD} 예방조치 \ 체크리스트 \ 자동 \ 생성 }}$</p>
+
+   #### 기능
+     * 진단 결과에 따라 작업별 안전조치 및 보호구 항목 리스트 생성
+     * 현장에서 활용 가능한 체크리스트 제공
+   #### 핵심 기술
+     * LLM 기반 체크리스트 항목 자동 구성
+     * PDF 자동 변환 및 다운로드 기능
+     * 사고 유형별 예방항목 매핑 시스템
+   #### 사용자 UI
+     * 예방조치 체크리스트 작성 UI ( 초기 화면 및 결과화면 )
+       <p align="left">
+         <img src="https://github.com/user-attachments/assets/ef6fd413-55ec-4c79-85f4-5f1c0c7d175f"/>
+       </p>
+     * 예방조치 체크리스트 다운로드 UI 및 PDF 자동 생성 파일
+       <p align="left">
+         <img src="https://github.com/user-attachments/assets/677b0a97-42a0-4d73-be8e-997dd57c745e"/>
+       </p>
+
+- <p>$\bf{\large{\color{#6580DD} AI \ 기반 \ 정책 \ 상담 \ 기능 }}$</p>
+
+   #### 기능
+     * 사용자 질문에 고용노동 정책 문서를 기반으로 실시간 답변 제공
+     * 정책 내용의 조항과 함께 정확한 출처 제공
+   #### 핵심 기술
+     * RAG 기술 기반 질의응답 시스템
+     * 정책 문서 임베딩 및 인덱싱
+     * 대화 히스토리 저장 및 컨텍스트 유지
+   #### 사용자 UI
+     * 채팅방 리스트 및 새로운 AI 채팅 생성 UI ( 초기화면 )
+       <p align="left">
+         <img src="https://github.com/user-attachments/assets/4885a75c-3d08-4a35-8422-69101286f0c3"/>
+       </p>
+     * AI 채팅 UI
+       <p align="left">
+         <img src="https://github.com/user-attachments/assets/7ba4e5b5-1df2-4d62-8704-01c3e5034317"/>
+       </p>
+
+
+### 배포 URL
+- https://www.nahc-career.o-r.kr/
+- 현재 오라클 및 클라우드 타입 운영 종료
+
 
