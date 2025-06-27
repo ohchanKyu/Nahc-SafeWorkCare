@@ -21,7 +21,7 @@ Safe WorkCare는 산업재해 예방을 위한 통합 정보 제공 플랫폼입
 예방조치 체크리스트 작성, 그리고 고용노동부 공식 자료 기반 AI 상담 기능까지 제공하여, <br>
 사업장 규모나 업종에 관계없이 누구나 쉽게 안전관리를 체계화할 수 있도록 지원합니다. <br>
 
-<br> 
+<hr> 
 
 ### 개발 환경
 #### Frontend
@@ -40,7 +40,7 @@ Safe WorkCare는 산업재해 예방을 위한 통합 정보 제공 플랫폼입
 - **Oracle** <br>
 - **CloudType** <br>
 
-<br>
+<hr> 
 
 ### 데이터 활용
 #### 한국산업안전보건공단
@@ -56,7 +56,7 @@ Safe WorkCare는 산업재해 예방을 위한 통합 정보 제공 플랫폼입
 #### 고용노동부
 - 한권으로 통하는 고용노동정책 <br>
 
-<br>
+<hr> 
 
 ### 서비스 기능
 - <p>$\bf{\large{\color{#6580DD} 산업재해 \ 통계 \ 시각화 \ 대시보드 }}$</p>
@@ -147,7 +147,7 @@ Safe WorkCare는 산업재해 예방을 위한 통합 정보 제공 플랫폼입
          <img src="https://github.com/user-attachments/assets/7ba4e5b5-1df2-4d62-8704-01c3e5034317"/>
        </p>
 
-<br>
+<hr> 
 
 ### 배포 URL
 - https://www.nahc-career.o-r.kr/
