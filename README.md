@@ -147,6 +147,7 @@ Safe WorkCare는 산업재해 예방을 위한 통합 정보 제공 플랫폼입
          <img src="https://github.com/user-attachments/assets/7ba4e5b5-1df2-4d62-8704-01c3e5034317"/>
        </p>
 
+<br>
 
 ### 배포 URL
 - https://www.nahc-career.o-r.kr/
