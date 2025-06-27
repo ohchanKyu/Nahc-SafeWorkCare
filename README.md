@@ -70,10 +70,8 @@ Safe WorkCare는 산업재해 예방을 위한 통합 정보 제공 플랫폼입
      * JavaScript 기반 차트 라이브러리(Chart.js) 활용
    #### 사용자 UI
      * 산업재해 통계자료 UI ( 규모별 사망자 수 )
-       <p align="left" display="flex">
-         <img src="https://github.com/user-attachments/assets/36f950d2-d76e-4de2-a890-0bafa92f1312"/>
-         <img src="https://github.com/user-attachments/assets/9bd98633-737b-44c3-80f3-af41c62e6c24"/>
+       <p align="left">
+         <img src="https://github.com/user-attachments/assets/80850811-8fa5-47c0-bfd0-7289d2f4fe18"/>
        </p>
-     ![image](https://github.com/user-attachments/assets/36f950d2-d76e-4de2-a890-0bafa92f1312)
-     ![image](https://github.com/user-attachments/assets/9bd98633-737b-44c3-80f3-af41c62e6c24)
+
 
