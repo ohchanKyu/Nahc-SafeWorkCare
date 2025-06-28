@@ -153,4 +153,249 @@ Safe WorkCare는 산업재해 예방을 위한 통합 정보 제공 플랫폼입
 - https://www.nahc-career.o-r.kr/
 - 현재 오라클 및 클라우드 타입 운영 종료
 
+<br>
 
+### 아키텍쳐
+#### 디렉터리 구조
+```
+📦nahc-career-llm
+ ┣ 📜app.py
+ ┣ 📜config.py
+ ┣ 📜Dockerfile
+ ┣ 📜llm.py
+ ┣ 📜mongoDBClient.py
+ ┣ 📜README.md
+ ┗ 📜requirements.txt
+📦nahc-career
+┣ 📂public
+ ┃ ┗ 📜logo.png
+ ┣ 📂src
+ ┃ ┣ 📂api
+ ┃ ┃ ┣ 📜AuthService.js
+ ┃ ┃ ┣ 📜CheckListService.js
+ ┃ ┃ ┣ 📜DangerousFactorService.js
+ ┃ ┃ ┣ 📜DiagnosisService.js
+ ┃ ┃ ┣ 📜GraphService.js
+ ┃ ┃ ┣ 📜LLMChatSectionService.js
+ ┃ ┃ ┣ 📜LLMChatService.js
+ ┃ ┃ ┗ 📜MemberService.js
+ ┃ ┣ 📂assets
+ ┃ ┃ ┣ 📜logo.png
+ ┃ ┃ ┗ 📜Spinner.gif
+ ┃ ┣ 📂components
+ ┃ ┃ ┣ 📂AuthPageComponents
+ ┃ ┃ ┃ ┣ 📜AuthContainer.module.css
+ ┃ ┃ ┃ ┣ 📜AuthInput.module.css
+ ┃ ┃ ┃ ┣ 📜FindIdContainer.jsx
+ ┃ ┃ ┃ ┣ 📜FindIdInput.jsx
+ ┃ ┃ ┃ ┣ 📜FindPasswordContainer.jsx
+ ┃ ┃ ┃ ┣ 📜FindPasswordInput.jsx
+ ┃ ┃ ┃ ┣ 📜LoginContainer.jsx
+ ┃ ┃ ┃ ┣ 📜LoginInput.jsx
+ ┃ ┃ ┃ ┣ 📜SignupContainer.jsx
+ ┃ ┃ ┃ ┣ 📜SignupInput.jsx
+ ┃ ┃ ┃ ┗ 📜VerifyCodeInput.jsx
+ ┃ ┃ ┣ 📂ChatPageComponents
+ ┃ ┃ ┃ ┣ 📜LLMChat.jsx
+ ┃ ┃ ┃ ┣ 📜LLMChat.module.css
+ ┃ ┃ ┃ ┣ 📜LLMChatList.jsx
+ ┃ ┃ ┃ ┣ 📜LLMChatList.module.css
+ ┃ ┃ ┃ ┣ 📜LLMChatSection.jsx
+ ┃ ┃ ┃ ┗ 📜LLMChatSection.module.css
+ ┃ ┃ ┣ 📂DiagnosisComponents
+ ┃ ┃ ┃ ┣ 📜CheckListGenerator.jsx
+ ┃ ┃ ┃ ┣ 📜ChecklistGenerator.module.css
+ ┃ ┃ ┃ ┣ 📜CheckListGeneratorComponent.jsx
+ ┃ ┃ ┃ ┣ 📜CheckListGeneratorComponent.module.css
+ ┃ ┃ ┃ ┣ 📜CheckListResult.jsx
+ ┃ ┃ ┃ ┣ 📜CheckListResult.module.css
+ ┃ ┃ ┃ ┣ 📜DiagnosisComponent.jsx
+ ┃ ┃ ┃ ┣ 📜DiagnosisComponent.module.css
+ ┃ ┃ ┃ ┣ 📜DiagnosisForm.jsx
+ ┃ ┃ ┃ ┣ 📜DiagnosisForm.module.css
+ ┃ ┃ ┃ ┣ 📜DiagnosisResult.jsx
+ ┃ ┃ ┃ ┣ 📜DiagnosisResult.module.css
+ ┃ ┃ ┃ ┣ 📜RiskKeywordsList.jsx
+ ┃ ┃ ┃ ┣ 📜RiskKeywordsList.module.css
+ ┃ ┃ ┃ ┣ 📜SimilarCasesList.jsx
+ ┃ ┃ ┃ ┗ 📜SimilarCasesList.module.css
+ ┃ ┃ ┣ 📂IndustryDisasterPageComponents
+ ┃ ┃ ┃ ┣ 📜AllIndustryDisaster.jsx
+ ┃ ┃ ┃ ┣ 📜AllIndustryDisaster.module.css
+ ┃ ┃ ┃ ┣ 📜AllIndustryDisasterComponent.jsx
+ ┃ ┃ ┃ ┣ 📜AllIndustryDisasterComponent.module.css
+ ┃ ┃ ┃ ┣ 📜FilterForm.jsx
+ ┃ ┃ ┃ ┣ 📜FilterForm.module.css
+ ┃ ┃ ┃ ┣ 📜FilterResult.jsx
+ ┃ ┃ ┃ ┣ 📜FilterResult.module.css
+ ┃ ┃ ┃ ┣ 📜Graph.jsx
+ ┃ ┃ ┃ ┣ 📜Graph.module.css
+ ┃ ┃ ┃ ┣ 📜GraphComponent.jsx
+ ┃ ┃ ┃ ┣ 📜GraphComponent.module.css
+ ┃ ┃ ┃ ┣ 📜GraphList.jsx
+ ┃ ┃ ┃ ┣ 📜IndustryFilter.jsx
+ ┃ ┃ ┃ ┣ 📜IndustryFilter.module.css
+ ┃ ┃ ┃ ┣ 📜KeywordForm.jsx
+ ┃ ┃ ┃ ┣ 📜KeywordForm.module.css
+ ┃ ┃ ┃ ┣ 📜KeywordFormModal.jsx
+ ┃ ┃ ┃ ┗ 📜KeywordFormModal.module.css
+ ┃ ┃ ┣ 📂LayoutComponents
+ ┃ ┃ ┃ ┣ 📜Footer.jsx
+ ┃ ┃ ┃ ┣ 📜Footer.module.css
+ ┃ ┃ ┃ ┣ 📜Header.jsx
+ ┃ ┃ ┃ ┣ 📜Header.module.css
+ ┃ ┃ ┃ ┣ 📜Loading.jsx
+ ┃ ┃ ┃ ┗ 📜Loading.module.css
+ ┃ ┃ ┗ 📂MyPageComponents
+ ┃ ┃ ┃ ┣ 📜DeleteModal.jsx
+ ┃ ┃ ┃ ┣ 📜DeleteModal.module.css
+ ┃ ┃ ┃ ┣ 📜MyChecklist.jsx
+ ┃ ┃ ┃ ┣ 📜MyChecklist.module.css
+ ┃ ┃ ┃ ┣ 📜MyChecklistModal.jsx
+ ┃ ┃ ┃ ┣ 📜MyChecklistModal.module.css
+ ┃ ┃ ┃ ┣ 📜MyDiagnosis.jsx
+ ┃ ┃ ┃ ┣ 📜MyDiagnosis.module.css
+ ┃ ┃ ┃ ┣ 📜MyInformation.jsx
+ ┃ ┃ ┃ ┣ 📜MyInformation.module.css
+ ┃ ┃ ┃ ┣ 📜MyRiskDiagnosis.jsx
+ ┃ ┃ ┃ ┣ 📜MyRiskDiagnosis.module.css
+ ┃ ┃ ┃ ┣ 📜MyRiskDiagnosisModal.jsx
+ ┃ ┃ ┃ ┗ 📜MyRiskDiagnosisModal.module.css
+ ┃ ┣ 📂page
+ ┃ ┃ ┣ 📜AuthPage.jsx
+ ┃ ┃ ┣ 📜AuthPage.module.css
+ ┃ ┃ ┣ 📜ChatPage.jsx
+ ┃ ┃ ┣ 📜ChatPage.module.css
+ ┃ ┃ ┣ 📜IndustryDisasterPage.jsx
+ ┃ ┃ ┣ 📜IndustryDisasterPage.module.css
+ ┃ ┃ ┣ 📜MyPage.jsx
+ ┃ ┃ ┗ 📜MyPage.module.css
+ ┃ ┣ 📂store
+ ┃ ┃ ┣ 📜login-context.js
+ ┃ ┃ ┣ 📜LoginProvider.jsx
+ ┃ ┃ ┗ 📜ProtectedRoute.jsx
+ ┃ ┣ 📜App.css
+ ┃ ┣ 📜App.jsx
+ ┃ ┣ 📜index.css
+ ┃ ┗ 📜main.jsx
+ ┣ 📜index.html
+ ┣ 📜package.json
+ ┗ 📜vite.config.js
+📦nahc-career-backend
+ ┣ 📂src
+ ┃ ┣ 📂main
+ ┃ ┃ ┣ 📂java
+ ┃ ┃ ┃ ┗ 📂kr
+ ┃ ┃ ┃ ┃ ┗ 📂ac
+ ┃ ┃ ┃ ┃ ┃ ┗ 📂dankook
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂CareerApplication
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂config
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂converter
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜DateToLocalDateTimeKstConverter.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜LLMChatEntityConverter.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜LocalDateTimeToDateKstConverter.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜MemberEntityConverter.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂principal
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜PrincipalDetails.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜PrincipalDetailsService.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CorsConfig.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜MongoDBConfig.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜RedisConfig.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜SecurityConfig.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜WebMvcConfig.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂controller
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜AuthController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CheckListController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜DangerSituationController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜GraphController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜LLMChatController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜LLMChatSectionController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜MemberController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜RiskDiagnosisController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂document
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CategoryData.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜ChatHistoryData.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜ChecklistHistory.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜DangerSituationData.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜DiagnosisHistory.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜GraphData.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂dto
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂request
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂llm
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜LLMChatRequest.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CheckListFormRequest.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CheckListResultRequest.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜DiagnosisSaveRequest.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜DownloadCheckListRequest.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜FilterRequest.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜FindIdRequest.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜PasswordChangeRequest.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜SignInRequest.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜SignupRequest.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜TokenRequest.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜VerifyCodeRequest.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂response
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂llm
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜LLMChatResponse.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜LLMChatSectionResponse.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜ApiMessageResponse.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜ApiResponse.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜AuthMailResponse.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜KeywordListResponse.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜KeywordResponse.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜MailResponse.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜MemberResponse.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜RiskDiagnosisResultResponse.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜TokenResponse.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂entity
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜BaseEntity.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜LLMChat.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜LLMChatSection.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜Member.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂exception
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜ApiErrorCode.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜ApiException.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜EncryptException.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜ErrorCode.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜ErrorResponse.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜GlobalExceptionHandler.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜MailException.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜TokenErrorCode.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜ValidationException.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂jwt
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜JwtAccessDeniedHandler.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜JwtAuthenticationEntryPoint.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜JwtErrorResponseHandler.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜JwtFilter.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜JwtRedisHandler.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜JwtTokenProvider.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂repository
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜ChatHistoryDataRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜ChecklistHistoryRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜DangerSituationDataRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜DiagnosisHistoryRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜GraphDataRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜LLMChatRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜LLMChatSectionRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜MemberRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜RefreshTokenRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂service
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜AuthService.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CheckListService.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜DangerSituationService.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜LLMChatSectionService.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜LLMChatService.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜MailService.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜MemberService.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜RiskDiagnosisService.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂util
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜DecryptConverter.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜DecryptId.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜EncryptionUtil.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜CareerApplication.java
+ ┃ ┃ ┗ 📂resources
+ ┃ ┃ ┃ ┣ 📜application.properties
+ ┃ ┃ ┃ ┗ 📜NanumGothic-Bold.ttf
+ ┣ 📜build.gradle
+ ┗ 📜settings.gradle
+```
